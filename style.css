@@ -52,7 +52,7 @@ button:hover {
   background: #a63a00;
 }
 
-/* 📱 Responsive design */
+/* Responsive design */
 @media (max-width: 600px) {
   #app {
     margin: 50px 20px;
