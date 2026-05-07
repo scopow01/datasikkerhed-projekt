@@ -1,8 +1,3 @@
-/* Global styles */
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -10,7 +5,6 @@ body {
   color: #EFD6AC;
 }
 
-/* App container */
 #app {
   max-width: 600px;
   margin: 100px auto;
@@ -18,30 +12,23 @@ body {
   text-align: center;
   background: #183A37;
   border-radius: 10px;
-
-
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Title and text */
 #app h1 {
   color: #EFD6AC;
-  margin-bottom: 10px;
 }
 
 #app p {
   font-size: 18px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
-/* Buttons container */
-#app #buttons {
+#buttons {
   display: flex;
   flex-direction: column;
 }
 
-/* Buttons */
-#app #buttons button {
+button {
   background: #C44900;
   color: #EFD6AC;
   border: none;
@@ -49,34 +36,8 @@ body {
   margin: 10px 0;
   cursor: pointer;
   border-radius: 5px;
-
-  transition: 0.2s;
 }
 
-/* Hover effect */
-#app #buttons button:hover {
+button:hover {
   background: #a63a00;
-  transform: scale(1.05);
-  opacity: 0.9;
-}
-
-/* Click effect */
-#app #buttons button:active {
-  transform: scale(0.97);
-}
-
-/* Responsive design */
-@media (max-width: 600px) {
-  #app {
-    margin: 40px 15px;
-    padding: 15px;
-  }
-
-  #app h1 {
-    font-size: 22px;
-  }
-
-  #app p {
-    font-size: 16px;
-  }
 }

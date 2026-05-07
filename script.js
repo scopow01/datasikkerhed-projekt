@@ -9,58 +9,43 @@ const scenes = {
   },
 
   phishing: {
-    title: "Fake login page",
-    text: "Du klikker på linket og kommer ind på en side, der ligner en officiel login-side. Hvad gør du?",
+    title: "Fake login side",
+    text: "Du indtaster dine oplysninger...",
     choices: [
-      { text: "Indtast dine oplysninger", next: "hacked" },
-      { text: "Luk siden", next: "safePhishing" }
+      { text: "Fortsæt", next: "hacked" }
     ]
   },
 
   wifi: {
     title: "Offentligt WiFi",
-    text: "Du sidder på en café og er på offentligt WiFi. Logger du ind på din bank?",
+    text: "Du er på café. Logger du ind på din bank?",
     choices: [
       { text: "Ja", next: "hackedWifi" },
-      { text: "Nej", next: "safeWifi" }
+      { text: "Nej", next: "safe" }
     ]
   },
 
   hacked: {
     title: "Åh nej!",
-    text: "Dine oplysninger er blevet stjålet, fordi du indtastede dem på en falsk side.",
+    text: "Dine oplysninger er blevet stjålet.",
     end: true
   },
 
   hackedWifi: {
     title: "Ikke sikkert!",
-    text: "Dine data kan blive opsnappet på offentlige netværk.",
+    text: "Dine data kan blive opsnappet ⚠️",
     end: true
   },
 
-  safePhishing: {
+  safe: {
     title: "Godt valg!",
-    text: "Du undgik phishing ved ikke at indtaste dine oplysninger.",
-    end: true
-  },
-
-  safeWifi: {
-    title: "Godt valg!",
-    text: "Du undgik at bruge følsomme oplysninger på usikkert netværk.",
+    text: "Du er sikker 🎉",
     end: true
   }
 };
 
-
 function showScene(sceneKey) {
   const scene = scenes[sceneKey];
-
-
-  if (!scene) {
-    console.error("Scene not found:", sceneKey);
-    return;
-  }
-
 
   document.getElementById("title").innerText = scene.title;
   document.getElementById("text").innerText = scene.text;
@@ -68,15 +53,10 @@ function showScene(sceneKey) {
   const buttonsDiv = document.getElementById("buttons");
   buttonsDiv.innerHTML = "";
 
-
   if (scene.end) {
-    const btn = document.createElement("button");
-    btn.innerText = "Prøv igen";
-    btn.addEventListener("click", () => showScene("start"));
-    buttonsDiv.appendChild(btn);
+    buttonsDiv.innerHTML = `<button onclick="startGame()">Prøv igen</button>`;
     return;
   }
-
 
   scene.choices.forEach(choice => {
     const btn = document.createElement("button");
@@ -86,5 +66,8 @@ function showScene(sceneKey) {
   });
 }
 
+function startGame() {
+  showScene("start");
+}
 
-showScene("start");
+startGame();
