@@ -39,16 +39,14 @@ function showScene(sceneKey) {
   const buttonsDiv = document.getElementById("buttons");
   buttonsDiv.innerHTML = "";
 
-  // 👉 Hvis det er en slutning
   if (scene.end) {
-    const restartBtn = document.createElement("button");
-    restartBtn.innerText = "Prøv igen";
-    restartBtn.onclick = () => showScene("start");
-    buttonsDiv.appendChild(restartBtn);
+    const btn = document.createElement("button");
+    btn.innerText = "Prøv igen";
+    btn.onclick = () => showScene("start");
+    buttonsDiv.appendChild(btn);
     return;
   }
 
-  // 👉 Ellers vis valg
   scene.choices.forEach(choice => {
     const btn = document.createElement("button");
     btn.innerText = choice.text;
@@ -57,5 +55,4 @@ function showScene(sceneKey) {
   });
 }
 
-// Start spillet
 showScene("start");
