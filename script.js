@@ -79,4 +79,6 @@ function startGame() {
   showScene("start");
 }
 
-startGame();
+window.onload = function() {
+  startGame();
+};
