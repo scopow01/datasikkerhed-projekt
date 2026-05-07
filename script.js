@@ -1,19 +1,10 @@
 const scenes = {
   start: {
-    title: "Du modtager en besked",
-    text: "Du får en besked fra en ukendt afsender med et link.",
+    title: "Velkommen",
+    text: "Du modtager en mærkelig besked. Hvad gør du?",
     choices: [
-      { text: "Klik på linket", next: "link" },
+      { text: "Klik på linket", next: "hacked" },
       { text: "Ignorer beskeden", next: "safe" }
-    ]
-  },
-
-  link: {
-    title: "Phishing side",
-    text: "Du bliver sendt til en side, der ligner din bank.",
-    choices: [
-      { text: "Indtast dine oplysninger", next: "hacked" },
-      { text: "Gå væk fra siden", next: "safe" }
     ]
   },
 
@@ -25,7 +16,7 @@ const scenes = {
 
   safe: {
     title: "Godt valg!",
-    text: "Du undgik svindel og beskyttede dine data.",
+    text: "Du undgik et phishing-angreb.",
     end: true
   }
 };
@@ -39,6 +30,7 @@ function showScene(sceneKey) {
   const buttonsDiv = document.getElementById("buttons");
   buttonsDiv.innerHTML = "";
 
+
   if (scene.end) {
     const btn = document.createElement("button");
     btn.innerText = "Prøv igen";
@@ -47,6 +39,7 @@ function showScene(sceneKey) {
     return;
   }
 
+
   scene.choices.forEach(choice => {
     const btn = document.createElement("button");
     btn.innerText = choice.text;
@@ -54,5 +47,6 @@ function showScene(sceneKey) {
     buttonsDiv.appendChild(btn);
   });
 }
+
 
 showScene("start");
