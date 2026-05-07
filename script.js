@@ -9,8 +9,8 @@ const scenes = {
   },
 
   phishing: {
-    title: "Mistænkelig login-side",
-    text: "Du får en mail fra SU styrelsen som beder dig om din kortoplysninger til et specielt ekstra SU tillæg. Hvad gør du?",
+    title: "Mistænkelig link",
+    text: "Siden som åbner beder dig om din kortoplysninger til et specielt ekstra SU tillæg. Hvad gør du?",
     choices: [
       { text: "Indtaster mine oplysninger", next: "hacked" },
       { text: "Lukker siden med det samme", next: "safe" }
