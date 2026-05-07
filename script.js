@@ -1,39 +1,73 @@
 const scenes = {
   start: {
-    title: "Velkommen",
-    text: "Du modtager en mærkelig besked. Hvad gør du?",
+    title: "Du modtager en mail",
+    text: "Du får en mail fra 'SU-styrelsen'. Hvad gør du?",
     choices: [
-      { text: "Klik på linket", next: "hacked" },
-      { text: "Ignorer beskeden", next: "safe" }
+      { text: "Klik på linket", next: "phishing" },
+      { text: "Ignorer mailen", next: "wifi" }
+    ]
+  },
+
+  phishing: {
+    title: "Fake login page",
+    text: "Du klikker på linket og kommer ind på en side, der ligner en officiel login-side. Hvad gør du?",
+    choices: [
+      { text: "Indtast dine oplysninger", next: "hacked" },
+      { text: "Luk siden", next: "safePhishing" }
+    ]
+  },
+
+  wifi: {
+    title: "Offentligt WiFi",
+    text: "Du sidder på en café og er på offentligt WiFi. Logger du ind på din bank?",
+    choices: [
+      { text: "Ja", next: "hackedWifi" },
+      { text: "Nej", next: "safeWifi" }
     ]
   },
 
   hacked: {
     title: "Åh nej!",
-    text: "Dine oplysninger er blevet stjålet, og din konto er nu kompromitteret.",
+    text: "Dine oplysninger er blevet stjålet, fordi du indtastede dem på en falsk side.",
     end: true
   },
 
-  safe: {
+  hackedWifi: {
+    title: "Ikke sikkert!",
+    text: "Dine data kan blive opsnappet på offentlige netværk.",
+    end: true
+  },
+
+  safePhishing: {
     title: "Godt valg!",
-    text: "Du undgik et phishing-angreb.",
+    text: "Du undgik phishing ved ikke at indtaste dine oplysninger.",
+    end: true
+  },
+
+  safeWifi: {
+    title: "Godt valg!",
+    text: "Du undgik at bruge følsomme oplysninger på usikkert netværk.",
     end: true
   }
 };
 
+
 function showScene(sceneKey) {
   const scene = scenes[sceneKey];
+
 
   if (!scene) {
     console.error("Scene not found:", sceneKey);
     return;
   }
 
+
   document.getElementById("title").innerText = scene.title;
   document.getElementById("text").innerText = scene.text;
 
   const buttonsDiv = document.getElementById("buttons");
   buttonsDiv.innerHTML = "";
+
 
   if (scene.end) {
     const btn = document.createElement("button");
@@ -43,6 +77,7 @@ function showScene(sceneKey) {
     return;
   }
 
+
   scene.choices.forEach(choice => {
     const btn = document.createElement("button");
     btn.innerText = choice.text;
@@ -50,5 +85,6 @@ function showScene(sceneKey) {
     buttonsDiv.appendChild(btn);
   });
 }
+
 
 showScene("start");
