@@ -1,3 +1,4 @@
+alert("JS virker!")
 const scenes = {
   start: {
     title: "Du modtager en mail",
