@@ -1,4 +1,3 @@
-alert("test");
 const scenes = {
   start: {
     title: "Du modtager en mail",
