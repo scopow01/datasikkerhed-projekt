@@ -10,15 +10,16 @@ const scenes = {
 
   phishing: {
     title: "Fake login side",
-    text: "Du indtaster dine oplysninger...",
+    text: "Du klikker på linket og lander på en side der ligner en officiel login. Hvad gør du?",
     choices: [
-      { text: "Fortsæt", next: "hacked" }
+      { text: "Indtast oplysninger", next: "hacked" },
+      { text: "Luk siden", next: "safe" }
     ]
   },
 
   wifi: {
     title: "Offentligt WiFi",
-    text: "Du er på café. Logger du ind på din bank?",
+    text: "Du er på café og bruger offentligt WiFi. Logger du ind på din bank?",
     choices: [
       { text: "Ja", next: "hackedWifi" },
       { text: "Nej", next: "safe" }
@@ -27,25 +28,32 @@ const scenes = {
 
   hacked: {
     title: "Åh nej!",
-    text: "Dine oplysninger er blevet stjålet.",
+    text: "Dine oplysninger er blevet stjålet, og din konto er nu kompromitteret.",
     end: true
   },
 
   hackedWifi: {
     title: "Ikke sikkert!",
-    text: "Dine data kan blive opsnappet ⚠️",
+    text: "Dine data kan blive opsnappet på offentlige netværk ⚠️",
     end: true
   },
 
   safe: {
     title: "Godt valg!",
-    text: "Du er sikker 🎉",
+    text: "Du undgik en potentiel trussel og beskyttede dine personlige oplysninger.",
     end: true
   }
 };
 
+
 function showScene(sceneKey) {
   const scene = scenes[sceneKey];
+
+
+  if (!scene) {
+    console.error("Scene not found:", sceneKey);
+    return;
+  }
 
   document.getElementById("title").innerText = scene.title;
   document.getElementById("text").innerText = scene.text;
@@ -54,9 +62,13 @@ function showScene(sceneKey) {
   buttonsDiv.innerHTML = "";
 
   if (scene.end) {
-    buttonsDiv.innerHTML = `<button onclick="startGame()">Prøv igen</button>`;
+    const btn = document.createElement("button");
+    btn.innerText = "Prøv igen";
+    btn.addEventListener("click", startGame);
+    buttonsDiv.appendChild(btn);
     return;
   }
+
 
   scene.choices.forEach(choice => {
     const btn = document.createElement("button");
@@ -65,6 +77,7 @@ function showScene(sceneKey) {
     buttonsDiv.appendChild(btn);
   });
 }
+
 
 function startGame() {
   showScene("start");
