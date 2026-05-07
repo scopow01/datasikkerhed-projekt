@@ -44,3 +44,39 @@ const scenes = {
     end: true
   }
 };
+
+function showScene(sceneKey) {
+  const scene = scenes[sceneKey];
+
+  if (!scene) {
+    console.error("Scene not found:", sceneKey);
+    return;
+  }
+
+  document.getElementById("title").innerText = scene.title;
+  document.getElementById("text").innerText = scene.text;
+
+  const buttonsDiv = document.getElementById("buttons");
+  buttonsDiv.innerHTML = "";
+
+  if (scene.end) {
+    const btn = document.createElement("button");
+    btn.innerText = "Prøv igen";
+    btn.onclick = startGame;
+    buttonsDiv.appendChild(btn);
+    return;
+  }
+
+  scene.choices.forEach(choice => {
+    const btn = document.createElement("button");
+    btn.innerText = choice.text;
+    btn.onclick = () => showScene(choice.next);
+    buttonsDiv.appendChild(btn);
+  });
+}
+
+function startGame() {
+  showScene("start");
+}
+
+startGame();
