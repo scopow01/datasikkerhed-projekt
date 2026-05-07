@@ -24,29 +24,31 @@ const scenes = {
 function showScene(sceneKey) {
   const scene = scenes[sceneKey];
 
+  if (!scene) {
+    console.error("Scene not found:", sceneKey);
+    return;
+  }
+
   document.getElementById("title").innerText = scene.title;
   document.getElementById("text").innerText = scene.text;
 
   const buttonsDiv = document.getElementById("buttons");
   buttonsDiv.innerHTML = "";
 
-
   if (scene.end) {
     const btn = document.createElement("button");
     btn.innerText = "Prøv igen";
-    btn.onclick = () => showScene("start");
+    btn.addEventListener("click", () => showScene("start"));
     buttonsDiv.appendChild(btn);
     return;
   }
 
-
   scene.choices.forEach(choice => {
     const btn = document.createElement("button");
     btn.innerText = choice.text;
-    btn.onclick = () => showScene(choice.next);
+    btn.addEventListener("click", () => showScene(choice.next));
     buttonsDiv.appendChild(btn);
   });
 }
-
 
 showScene("start");

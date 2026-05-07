@@ -1,4 +1,8 @@
 /* Global styles */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -14,23 +18,29 @@ body {
   text-align: center;
   background: #183A37;
   border-radius: 10px;
+
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Nested from SCSS */
+/* Title and text */
 #app h1 {
   color: #EFD6AC;
+  margin-bottom: 10px;
 }
 
 #app p {
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
+/* Buttons container */
 #app #buttons {
   display: flex;
   flex-direction: column;
 }
 
+/* Buttons */
 #app #buttons button {
   background: #C44900;
   color: #EFD6AC;
@@ -39,17 +49,27 @@ body {
   margin: 10px 0;
   cursor: pointer;
   border-radius: 5px;
+
+  transition: 0.2s;
 }
 
-/* Hover */
+/* Hover effect */
 #app #buttons button:hover {
   background: #a63a00;
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
-/* Responsive */
+/* Click effect */
+#app #buttons button:active {
+  transform: scale(0.97);
+}
+
+/* Responsive design */
 @media (max-width: 600px) {
   #app {
-    margin: 50px 20px;
+    margin: 40px 15px;
+    padding: 15px;
   }
 
   #app h1 {
