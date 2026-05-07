@@ -9,11 +9,11 @@ const scenes = {
   },
 
   phishing: {
-    title: "Fake login page",
-    text: "You click the link and land on a login page that looks official. What do you do?",
+    title: "Falsk login side",
+    text: "Du klikker på linket og kommer ind på en side, der ligner en officiel login-side. Hvad gør du?",
     choices: [
-      { text: "Enter your information", next: "hacked" },
-      { text: "Close the page", next: "safePhishing" }
+      { text: "Indtast dine oplysninger", next: "hacked" },
+      { text: "Luk siden", next: "safePhishing" }
     ]
   },
 
@@ -40,38 +40,46 @@ const scenes = {
 
   safePhishing: {
     title: "Godt valg!",
-    text: "You recognized the suspicious website and avoided entering your information. This protected your personal data.",
+    text: "Du genkendte den mistænkelige side og undgik at indtaste dine oplysninger. Det beskyttede dine data.",
     end: true
   },
 
   safeWifi: {
     title: "Godt valg!",
-    text: "Du undgik at logge ind på et usikkert netværk og beskyttede dermed dine personlige oplysninger. Dette er et eksempel på sikker digital adfærd.",
+    text: "Du undgik at logge ind på et usikkert netværk og beskyttede dermed dine personlige oplysninger.",
     end: true
   }
 };
 
-// Function to display a scene based on its key
+// Function to display a scene
 function showScene(sceneKey) {
+  console.log(sceneKey); // Debug: shows which scene is loaded
+
   const scene = scenes[sceneKey];
 
-  // Update title and text content
+  // Safety check (prevents crashes)
+  if (!scene) {
+    console.error("Scene not found:", sceneKey);
+    return;
+  }
+
+  // Update content
   document.getElementById("title").innerText = scene.title;
   document.getElementById("text").innerText = scene.text;
 
   const buttonsDiv = document.getElementById("buttons");
   buttonsDiv.innerHTML = "";
 
-  // If the scene is an ending, show restart button
+  // If it's an ending scene
   if (scene.end) {
     const restartBtn = document.createElement("button");
-    restartBtn.innerText = "Start again";
+    restartBtn.innerText = "Prøv igen";
     restartBtn.addEventListener("click", startGame);
     buttonsDiv.appendChild(restartBtn);
     return;
   }
 
-  // Create buttons for each choice
+  // Create buttons for choices
   scene.choices.forEach(choice => {
     const btn = document.createElement("button");
     btn.innerText = choice.text;
@@ -80,10 +88,10 @@ function showScene(sceneKey) {
   });
 }
 
-// Function to start or restart the game
+// Start or restart game
 function startGame() {
   showScene("start");
 }
 
-// Set the game on page load
+// Run on page load
 startGame();
