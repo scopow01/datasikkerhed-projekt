@@ -16,7 +16,7 @@ body {
   border-radius: 10px;
 }
 
-/* Nested fra SCSS */
+/* Nested from SCSS */
 #app h1 {
   color: #EFD6AC;
 }
@@ -41,7 +41,7 @@ body {
   border-radius: 5px;
 }
 
-/* Hover (fra darken) */
+/* Hover */
 #app #buttons button:hover {
   background: #a63a00;
 }
